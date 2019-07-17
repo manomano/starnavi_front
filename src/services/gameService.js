@@ -8,14 +8,13 @@ class GameService  /*extends Component*/{
     constructor(){
         //super();
         this.setAllProps();
-    };
+    }
 
 
     setAllProps(){
         this.winners = this.getGames();
         this.gameModes = this.getGames();
-    };
-
+    }
     generateGameModes(){
         return [
             {field:50 * 4, delay:1000},
@@ -36,11 +35,11 @@ class GameService  /*extends Component*/{
             {field:50 * 7, delay:2000},
             {field:50 * 8, delay:2000}
         ]
-    };
+    }
 
     getGameModes () {
         return localStorage.getItem('gameModes')?JSON.parse(localStorage.getItem('gameModes')):[];
-    };
+    }
 
     SaveGame(winner) {
         let record = {winner: winner, date: new Date()};
@@ -51,7 +50,7 @@ class GameService  /*extends Component*/{
         //     records = JSON.parse(winnersStorage).push(record);
         // }
         localStorage.setItem('winners',this.winners);
-    };
+    }
 
     getGames() {
         let winners = JSON.parse(localStorage.getItem('winners'));
