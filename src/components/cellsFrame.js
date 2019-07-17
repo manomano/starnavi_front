@@ -20,15 +20,12 @@ export default class CellsFrame extends Component{
 
     constructor(props) {
         super(props);
-
+        this.setParams = this.setParams.bind(this);
         console.log(GameService.gameModes);
         this.state.winners = GameService.winners;
         this.state.gameModes = GameService.gameModes;
 
         this.generateMatrix();
-
-        //this.handleSubmit = this.handleSubmit.bind(this);
-        //this.getDataFromServer()
     }
 
     generateMatrix(){
@@ -40,11 +37,20 @@ export default class CellsFrame extends Component{
         }
     }
 
+    setParams(data){
+        this.setState(data);
+        this.play();
+    }
+
+    play(){
+
+    }
+
     render(){
 
         return(
             <div>
-                <Toolbar gameModes ={GameService.gameModes} />
+                <Toolbar gameModes ={GameService.gameModes} setParams={this.setParams}/>
                 <div  style={{'width':'300px', 'height':'300px'}}>
                     {
                         this.theMatrix.map(function (row, rowIndex) {
