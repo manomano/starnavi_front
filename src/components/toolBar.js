@@ -15,7 +15,12 @@ export class ToolBar extends React.Component {
     }
 
     onSubmit = () => {
-        let obj = {name :this.refs.name.value, mode:this.refs.mode.value};
+        for (let prop in this.refs) {
+            if(['',0,'0'].indexOf(this.refs[prop].value)>=0){
+                return;
+            }
+        }
+        let obj = {name :this.refs.name.value, mode:this.props.gameModes[this.refs.mode.value]};
         this.props.setParams(obj);
     }
 
@@ -28,7 +33,7 @@ export class ToolBar extends React.Component {
                 <div className="col">
 
                     <select className="form-control" ref="mode">
-                        <option></option>
+                        <option value="0"></option>
                         {this.props.gameModes.map(function (row,index){
                             return ( <option key={row.key } value={index}>field size: {row.field} delay: {row.delay}ms</option>)
                         })}
